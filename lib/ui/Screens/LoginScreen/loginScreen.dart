@@ -96,7 +96,7 @@ class _LoginPageState extends State<LoginScreen> {
       return false;
     }
 
-    if (apiResponce.data.userId > 0) {
+    if (apiResponce.data.userId >= 0) {
       // showMessageError("Wrong user name or password !");
 
       if (mounted) {

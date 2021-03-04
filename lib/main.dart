@@ -14,14 +14,12 @@ import 'package:sale_order_app/ui/Screens/LoginScreen/loginScreen.dart';
 import 'config/appState.dart';
 
 void setUpLocator() {
-
   GetIt.I.registerLazySingleton(() => UserService());
   GetIt.I.registerLazySingleton(() => SummaryService());
   GetIt.I.registerLazySingleton(() => SOService());
   GetIt.I.registerLazySingleton(() => DCService());
   GetIt.I.registerLazySingleton(() => YTDSaleService());
   GetIt.I.registerLazySingleton(() => LoginScreenLogoAndCompanyNameService());
-  
 }
 
 void main() async {

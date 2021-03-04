@@ -10,9 +10,11 @@ class SummaryService {
     Summary sammury = Summary();
 
     try {
-      print("Api called in Summary service  = "+APIConstants.baseUrlMain + APIConstants.dashboardSummaryApi);
+      print("Api called in Summary service  = " +
+          APIConstants.baseUrlMain +
+          APIConstants.dashboardSummaryApi);
       data = await http
-          .get(APIConstants.baseUrlMain+APIConstants.dashboardSummaryApi)
+          .get(APIConstants.baseUrlMain + APIConstants.dashboardSummaryApi)
           .timeout(
         Duration(seconds: 10),
         onTimeout: () {
@@ -22,7 +24,8 @@ class SummaryService {
         },
       );
     } catch (_) {
-      print("Api called in Summary service  = http://192.168.88.101:1500" + APIConstants.dashboardSummaryApi);
+      print("Api called in Summary service  = http://192.168.88.101:1500" +
+          APIConstants.dashboardSummaryApi);
       data = await http
           .get(APIConstants.baseUrlCompany + APIConstants.dashboardSummaryApi)
           .timeout(Duration(seconds: 10), onTimeout: () {
@@ -49,6 +52,8 @@ class SummaryService {
         return APIResponce<Summary>(data: sammury);
       }
     }
+
+    ///
 
     // if(data == null)
     // {

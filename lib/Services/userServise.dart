@@ -18,7 +18,7 @@ class UserService {
       data = await http
           .get(APIConstants.baseUrlMain +
               APIConstants.userAuthApi +
-              
+              // "/"+
               userName +
               "/" +
               password)
@@ -37,7 +37,6 @@ class UserService {
       data = await http
           .get(APIConstants.baseUrlCompany +
               APIConstants.userAuthApi +
-            
               userName +
               "/" +
               password)

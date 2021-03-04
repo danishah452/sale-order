@@ -23,6 +23,7 @@ class _DCListScreenState extends State<DCListScreen> {
 
   //Api responce call for delivery order
   APIResponce<List<DeliveryChallan>> apiResponce;
+
   //Api responce for delivery order status update
 
   bool isLoading = false;
@@ -37,8 +38,6 @@ class _DCListScreenState extends State<DCListScreen> {
 
   @override
   void initState() {
-   
-
     //callinf main data functon for this screen
     netWorkChek();
     //_fetchSammury();
@@ -115,10 +114,10 @@ class _DCListScreenState extends State<DCListScreen> {
       updateDeliveryOrderStatusIsLoading = true;
     });
 
- LoginPrefrences loginPrefrences = new LoginPrefrences();
+    LoginPrefrences loginPrefrences = new LoginPrefrences();
     int userId = await loginPrefrences.getUser();
     updateDeliveryChallanStatusApiResponce =
-        await doService.updateDeliveryChallanStatus(doId, status,userId);
+        await doService.updateDeliveryChallanStatus(doId, status, userId);
 
     if (updateDeliveryChallanStatusApiResponce.data == null) {
       showMessageError("Something went wrong");
@@ -163,8 +162,8 @@ class _DCListScreenState extends State<DCListScreen> {
           key: _scaffoldKey,
           appBar: AppBar(
             leading: BackButton(color: Colors.black),
-            title:
-                Text("Delivery challan", style: TextStyle(color: Colors.black87)),
+            title: Text("Delivery challan",
+                style: TextStyle(color: Colors.black87)),
             backgroundColor: Colors.white,
           ),
           // backgroundColor: Theme.of(context).colorScheme.primary,
@@ -181,30 +180,31 @@ class _DCListScreenState extends State<DCListScreen> {
                   return CommonWidgets.progressIndicator;
                 }
 
-                if (apiResponce == null ) {
+                if (apiResponce == null) {
                   // showMessageError("Something went wrong");
                   return InkWell(
                     child: Center(
-                        child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.error_outline),
-                        SizedBox(
-                          height: 8,
-                        ),
-                        Text(
-                          "Noting here",
-                          style: Theme.of(context).textTheme.caption,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          "Tap to reload",
-                          style: Theme.of(context).textTheme.bodyText1,
-                        ),
-                      ],
-                    )),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.error_outline),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Text(
+                            "Noting here",
+                            style: Theme.of(context).textTheme.caption,
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            "Tap to reload",
+                            style: Theme.of(context).textTheme.bodyText1,
+                          ),
+                        ],
+                      ),
+                    ),
                     onTap: () {
                       netWorkChek();
                     },
@@ -229,7 +229,7 @@ class _DCListScreenState extends State<DCListScreen> {
             // controller: lazyListscrollController,
             //  itemCount: globalItemsList.data.length,
 
-            itemCount:  apiResponce.data.length,
+            itemCount: apiResponce.data.length,
             itemBuilder: (BuildContext context, int index) {
               // Items thisListItems = globalItemsList
               //  .data[index];
@@ -255,9 +255,6 @@ class _DCListScreenState extends State<DCListScreen> {
               // );
               //  }
               //  else{
-
-
-                
 
               return dOListCardState(apiResponce.data[index]);
 
@@ -403,7 +400,8 @@ class _DCListScreenState extends State<DCListScreen> {
                                                         fontWeight:
                                                             FontWeight.w700,
                                                         fontSize: 12))
-                                                : Text("${deliveryChallan.dcNo}",
+                                                : Text(
+                                                    "${deliveryChallan.dcNo}",
                                                     style: TextStyle(
                                                         color: Colors.white70,
                                                         fontWeight:
@@ -429,20 +427,25 @@ class _DCListScreenState extends State<DCListScreen> {
                                         padding: const EdgeInsets.symmetric(
                                             vertical: 0, horizontal: 0),
                                         child: Center(
-                                            child: deliveryChallan.dcDate == null
+                                            child: deliveryChallan.dcDate ==
+                                                    null
                                                 ? Text("--:--:--",
-                                                    style: TextStyle(
-                                                        color: Colors.white70,
-                                                        fontWeight:
-                                                            FontWeight.w700,
-                                                        fontSize: 12))
+                                                    style:
+                                                        TextStyle(
+                                                            color:
+                                                                Colors.white70,
+                                                            fontWeight:
+                                                                FontWeight.w700,
+                                                            fontSize: 12))
                                                 : Text(
                                                     "${getDateAndTime(deliveryChallan.dcDate)}",
-                                                    style: TextStyle(
-                                                        color: Colors.white70,
-                                                        fontWeight:
-                                                            FontWeight.w700,
-                                                        fontSize: 12))),
+                                                    style:
+                                                        TextStyle(
+                                                            color:
+                                                                Colors.white70,
+                                                            fontWeight:
+                                                                FontWeight.w700,
+                                                            fontSize: 12))),
                                       )),
                                 ])
                               ],
@@ -472,8 +475,8 @@ class _DCListScreenState extends State<DCListScreen> {
                           shrinkWrap: true,
                           physics: ScrollPhysics(),
                           // controller: lazyListscrollController,
-                            itemCount: deliveryChallan.items.length,
-                         // itemCount: deliveryOrder.items.length,
+                          itemCount: deliveryChallan.items.length,
+                          // itemCount: deliveryOrder.items.length,
                           itemBuilder: (BuildContext context, int index) {
                             // Items thisListItems = globalItemsList
                             //  .data[index];
@@ -788,27 +791,29 @@ class _DCListScreenState extends State<DCListScreen> {
                   bottomLeft: Radius.circular(5),
                   topRight: Radius.circular(5),
                 ),
-                gradient: deliveryChallan.balanceAfterDC >= 0 ? LinearGradient(
-                    colors: [
-                      Color(0xFF43cea2),
-                      AppTheme.appBackgroundColorforCard1
-                    ],
-                    begin: Alignment(0.0, 1.0),
-                    end: Alignment(0.0, 0.0),
-                    // begin: const FractionalOffset(0.0, 1.0),
-                    // end: const FractionalOffset(1.0, 1.0),
-                    stops: [0.0, 2.0],
-                    tileMode: TileMode.clamp) :  LinearGradient(
-                    colors: [
-                      Colors.red[300],
-                      Colors.red[300],
-                    ],
-                    begin: Alignment(0.0, 1.0),
-                    end: Alignment(0.0, 0.0),
-                    // begin: const FractionalOffset(0.0, 1.0),
-                    // end: const FractionalOffset(1.0, 1.0),
-                    stops: [0.0, 2.0],
-                    tileMode: TileMode.clamp),
+                gradient: deliveryChallan.balanceAfterDC >= 0
+                    ? LinearGradient(
+                        colors: [
+                          Color(0xFF43cea2),
+                          AppTheme.appBackgroundColorforCard1
+                        ],
+                        begin: Alignment(0.0, 1.0),
+                        end: Alignment(0.0, 0.0),
+                        // begin: const FractionalOffset(0.0, 1.0),
+                        // end: const FractionalOffset(1.0, 1.0),
+                        stops: [0.0, 2.0],
+                        tileMode: TileMode.clamp)
+                    : LinearGradient(
+                        colors: [
+                          Colors.red[300],
+                          Colors.red[300],
+                        ],
+                        begin: Alignment(0.0, 1.0),
+                        end: Alignment(0.0, 0.0),
+                        // begin: const FractionalOffset(0.0, 1.0),
+                        // end: const FractionalOffset(1.0, 1.0),
+                        stops: [0.0, 2.0],
+                        tileMode: TileMode.clamp),
               ),
               child: Padding(
                 padding: const EdgeInsets.all(6.0),
@@ -882,8 +887,8 @@ class _DCListScreenState extends State<DCListScreen> {
                 onPressed: () async {
                   await NetworkConnectivity.check().then((internet) async {
                     if (internet) {
-                      bool status =
-                          await updateDeliveryChallanStatus(deliveryChallan.dcId, 1);
+                      bool status = await updateDeliveryChallanStatus(
+                          deliveryChallan.dcId, 1);
                       print(
                           "value updated of delivery order status :::  $status  and do id ${deliveryChallan.dcId}");
                       if (status) {
@@ -891,7 +896,8 @@ class _DCListScreenState extends State<DCListScreen> {
                             "value updated of delivery order status :::  $status  and do id ${deliveryChallan.dcId}");
 
                         setState(() {
-                          int indexD = apiResponce.data.indexOf(deliveryChallan);
+                          int indexD =
+                              apiResponce.data.indexOf(deliveryChallan);
                           apiResponce.data.removeAt(indexD);
                           apiResponce.data.length;
                           print("List update call ${apiResponce.data.length}");
@@ -961,7 +967,8 @@ class _DCListScreenState extends State<DCListScreen> {
     );
   }
 
-  _onAlertButtonsPressed(DeliveryChallan deliveryChallan, BuildContext context) {
+  _onAlertButtonsPressed(
+      DeliveryChallan deliveryChallan, BuildContext context) {
     Alert(
       context: context,
       type: AlertType.warning,
@@ -992,7 +999,6 @@ class _DCListScreenState extends State<DCListScreen> {
                     print(
                         "List update call unaaprove ${apiResponce.data.length}");
                   });
-                  
                 }
               } else {
                 //show network erro

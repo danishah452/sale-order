@@ -1,9 +1,9 @@
 class Summary {
-  double todaySale;
-  double mtd;
-  double ytd;
-  double receiveable;
-  double pendingSO;
+  dynamic todaySale;
+  dynamic mtd;
+  dynamic ytd;
+  dynamic receiveable;
+  dynamic pendingSO;
   Months months;
 
   Summary(
@@ -39,18 +39,18 @@ class Summary {
 }
 
 class Months {
-  int m1;
-  double m2;
-  double m3;
-  double m4;
-  double m5;
-  double m6;
-  double m7;
-  double m8;
-  double m9;
-  double m10;
-  double m11;
-  double m12;
+  dynamic m1;
+  dynamic m2;
+  dynamic m3;
+  dynamic m4;
+  dynamic m5;
+  dynamic m6;
+  dynamic m7;
+  dynamic m8;
+  dynamic m9;
+  dynamic m10;
+  dynamic m11;
+  dynamic m12;
 
   Months(
       {this.m1,

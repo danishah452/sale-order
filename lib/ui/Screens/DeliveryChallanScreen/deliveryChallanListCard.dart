@@ -12,10 +12,7 @@ import 'package:sale_order_app/ui/Screens/DeliveryChallanScreen/deliveryChallanL
 import 'package:sale_order_app/config/darkThemePrefrences.dart';
 
 class DCListCard extends StatefulWidget {
- final DeliveryChallan deliveryChallan;
-  
-  
-  
+  final DeliveryChallan deliveryChallan;
 
   DCListCard({
     Key key,
@@ -28,7 +25,7 @@ class DCListCard extends StatefulWidget {
 
 class _DCListCardState extends State<DCListCard> {
   DCService get doService => GetIt.I<DCService>();
-DCListScreen doListScreen = new DCListScreen();
+  DCListScreen doListScreen = new DCListScreen();
 
   //Api responce call for delivery order
   APIResponce<List<DeliveryChallan>> apiResponce;
@@ -53,14 +50,16 @@ DCListScreen doListScreen = new DCListScreen();
 
   void showMessageError(String message, [MaterialColor color = Colors.red]) {
     final scaffold = Scaffold.of(context);
-    scaffold.showSnackBar(new SnackBar(
-      backgroundColor: color,
-      content: new Text(
-        message,
-        style: TextStyle(fontWeight: FontWeight.w700),
+    scaffold.showSnackBar(
+      new SnackBar(
+        backgroundColor: color,
+        content: new Text(
+          message,
+          style: TextStyle(fontWeight: FontWeight.w700),
+        ),
+        duration: const Duration(seconds: 1),
       ),
-      duration: const Duration(seconds: 1),
-    ));
+    );
   }
 
   Future<bool> updateDeliveryOrderStatus(int doId, int status) async {
@@ -72,7 +71,7 @@ DCListScreen doListScreen = new DCListScreen();
     int userId = await loginPrefrences.getUser();
 
     updateDeliveryOrderStatusApiResponce =
-        await doService.updateDeliveryChallanStatus(doId, status,userId);
+        await doService.updateDeliveryChallanStatus(doId, status, userId);
 
     if (updateDeliveryOrderStatusApiResponce.data == null) {
       showMessageError("Something went wrong");
@@ -86,16 +85,13 @@ DCListScreen doListScreen = new DCListScreen();
         updateDeliveryOrderStatusIsLoading = false;
       });
       return true;
-    }
-    
-    else if (!updateDeliveryOrderStatusApiResponce.data.contains("OK")) {
+    } else if (!updateDeliveryOrderStatusApiResponce.data.contains("OK")) {
       showMessageSuccess("${updateDeliveryOrderStatusApiResponce.data}");
       setState(() {
         updateDeliveryOrderStatusIsLoading = false;
       });
       return false;
-    } 
-     else {
+    } else {
       showMessageError("Something went wrong");
       setState(() {
         updateDeliveryOrderStatusIsLoading = false;
@@ -236,14 +232,18 @@ DCListScreen doListScreen = new DCListScreen();
                                         padding: const EdgeInsets.symmetric(
                                             vertical: 0, horizontal: 0),
                                         child: Center(
-                                            child: widget.deliveryChallan.dcNo ==
+                                            child: widget
+                                                        .deliveryChallan.dcNo ==
                                                     null
-                                                ? Text("N/A",
-                                                    style: TextStyle(
-                                                        color: Colors.white70,
-                                                        fontWeight:
-                                                            FontWeight.w700,
-                                                        fontSize: 12))
+                                                ? Text(
+                                                    "N/A",
+                                                    style:
+                                                        TextStyle(
+                                                            color: Colors
+                                                                .white70,
+                                                            fontWeight:
+                                                                FontWeight.w700,
+                                                            fontSize: 12))
                                                 : Text(
                                                     "${widget.deliveryChallan.dcNo}",
                                                     style: TextStyle(
@@ -271,7 +271,8 @@ DCListScreen doListScreen = new DCListScreen();
                                         padding: const EdgeInsets.symmetric(
                                             vertical: 0, horizontal: 0),
                                         child: Center(
-                                            child: widget.deliveryChallan.dcDate ==
+                                            child: widget.deliveryChallan
+                                                        .dcDate ==
                                                     null
                                                 ? Text("--:--:--",
                                                     style: TextStyle(
@@ -316,7 +317,7 @@ DCListScreen doListScreen = new DCListScreen();
                           physics: ScrollPhysics(),
                           // controller: lazyListscrollController,
                           //  itemCount: globalItemsList.data.length,
-                          itemCount: widget.deliveryChallan.items.length  ,
+                          itemCount: widget.deliveryChallan.items.length,
                           itemBuilder: (BuildContext context, int index) {
                             // Items thisListItems = globalItemsList
                             //  .data[index];
@@ -751,8 +752,6 @@ DCListScreen doListScreen = new DCListScreen();
                 ),
                 onPressed: () async {
                   await NetworkConnectivity.check().then((internet) async {
-               
-
                     if (internet) {
                       bool status =
                           await updateDeliveryOrderStatus(delieveryOrderId, 0);

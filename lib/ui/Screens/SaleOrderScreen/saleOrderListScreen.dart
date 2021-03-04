@@ -181,26 +181,27 @@ class _SaleOrderListScreenState extends State<SaleOrderListScreen> {
                     // showMessageError("Something went wrong");
                     return InkWell(
                       child: Center(
-                          child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(Icons.error_outline),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Text(
-                            "Noting here",
-                            style: Theme.of(context).textTheme.caption,
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Text(
-                            "Tap to reload",
-                            style: Theme.of(context).textTheme.bodyText1,
-                          ),
-                        ],
-                      )),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.error_outline),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Text(
+                              "Noting here",
+                              style: Theme.of(context).textTheme.caption,
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              "Tap to reload",
+                              style: Theme.of(context).textTheme.bodyText1,
+                            ),
+                          ],
+                        ),
+                      ),
                       onTap: () {
                         netWorkChek();
                       },
